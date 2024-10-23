@@ -13,7 +13,23 @@ class FactsScreen extends StatelessWidget {
           context.read<FactsScreenController>().getFact();
         },
       ),
-      body: Column(),
+      body: Center(
+        child: Consumer<FactsScreenController>(
+          builder: (context, providerObj, child) => providerObj.isLoading
+              ? CircularProgressIndicator()
+              : Row(
+                  children: [
+                    Text(providerObj.resObj?.length.toString() ?? "no data"),
+                    Expanded(
+                      child: Text(
+                        providerObj.resObj?.fact.toString() ?? "no data",
+                        maxLines: 3,
+                      ),
+                    ),
+                  ],
+                ),
+        ),
+      ),
     );
   }
 }
