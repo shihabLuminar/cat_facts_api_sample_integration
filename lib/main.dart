@@ -1,3 +1,4 @@
+import 'package:cat_facts_api_sample_integration/controller/facts_list_screen_controller.dart';
 import 'package:cat_facts_api_sample_integration/controller/facts_screen_controller.dart';
 import 'package:cat_facts_api_sample_integration/view/facts_screen/facts_scree.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => FactsScreenController()),
         ChangeNotifierProvider(
-          create: (context) => FactsScreenController(),
-        )
+            create: (context) => FactsListScreenController()),
       ],
       child: MaterialApp(
         home: FactsScreen(),
